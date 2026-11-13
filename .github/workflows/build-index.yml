@@ -1,0 +1,30 @@
+name: Build Recipe Index
+on:
+  push:
+    branches: [ main ]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generate index.html
+        run: |
+          echo "<!DOCTYPE html><html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1'><title>My Recipes</title><style>body{font-family:system-ui,sans-serif;max-width:650px;margin:40px auto;padding:0 20px;line-height:1.6}a{text-decoration:none;color:#0969da}a:hover{text-decoration:underline}li{margin:8px 0}</style></head><body><h1>My Recipes</h1><ul>" > index.html
+          for f in *.html; do
+            if [ "$f" != "index.html" ] && [ -e "$f" ]; then
+              title=$(grep -i -o '<title>[^<]*</title>' "$f" | sed -e 's/<[^>]*>//g' | head -n 1)
+              if [ -z "$title" ]; then title="${f%.html}"; fi
+              echo "<li><a href=\"$f\">$title</a></li>" >> index.html
+            fi
+          done
+          echo "</ul></body></html>" >> index.html
+      - name: Commit index.html
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@://github.com"
+          git add index.html
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Update recipe index" && git push)
