@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salmon &amp; Sushi Rice Bowls</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: #1f2937;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: #fff;
+        }
+        .recipe-header { margin-bottom: 30px; padding-bottom: 20px; border-bottom: 3px solid #ea580c; }
+        h1 { font-size: 2.5em; color: #111827; margin-bottom: 10px; }
+        .recipe-image { display: block; max-width: 100%; height: auto; border-radius: 8px; margin-bottom: 30px; }
+        .description { font-size: 1.1em; color: #4b5563; font-style: italic; }
+        .meta {
+            display: flex; flex-wrap: wrap; gap: 20px;
+            background: #fff7ed; padding: 15px 20px; border-radius: 8px; margin-bottom: 30px;
+        }
+        .meta-item { text-align: center; }
+        .meta-label { font-size: 0.75em; text-transform: uppercase; letter-spacing: 0.5px; color: #9a3412; }
+        .meta-value { font-weight: bold; color: #c2410c; }
+        h2 { font-size: 1.5em; color: #ea580c; margin-bottom: 15px; padding-bottom: 8px; border-bottom: 1px solid #fed7aa; }
+        .section { margin-bottom: 30px; }
+        .ingredients-list { list-style: none; columns: 2; column-gap: 30px; }
+        .ingredients-list li { padding: 6px 0 6px 20px; position: relative; break-inside: avoid; }
+        .ingredients-list li::before { content: "•"; color: #ea580c; font-weight: bold; position: absolute; left: 0; }
+        .ingredients-list--plain li { padding-left: 0; }
+        .ingredients-list--plain li::before { content: none; }
+        .instructions-list { list-style: none; counter-reset: step; }
+        .instructions-list li { padding: 12px 0 12px 45px; position: relative; border-bottom: 1px dotted #e5e7eb; }
+        .instructions-list li:last-child { border-bottom: none; }
+        .instructions-list li::before {
+            counter-increment: step; content: counter(step);
+            position: absolute; left: 0; top: 10px; width: 28px; height: 28px;
+            background: #ea580c; color: white; border-radius: 50%;
+            text-align: center; font-size: 0.9em; font-weight: bold; line-height: 28px;
+        }
+        .instructions-list--plain li { padding-left: 0; }
+        .instructions-list--plain li::before { counter-increment: none; content: none; }
+        .instructions-list--bulleted li::before {
+            counter-increment: none; content: "•"; background: none;
+            color: #ea580c; width: auto; height: auto; top: 12px; line-height: 1;
+        }
+        .notes { background: #fef3c7; border-left: 4px solid #f59e0b; padding: 15px 20px; }
+        .notes-label { font-weight: bold; color: #92400e; margin-bottom: 5px; }
+        .nutrition { background: #ecfdf5; border-left: 4px solid #10b981; padding: 15px 20px; }
+        .nutrition-label { font-weight: bold; color: #065f46; margin-bottom: 5px; }
+        .footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #e5e7eb; font-size: 0.9em; color: #6b7280; }
+        .footer a { color: #ea580c; text-decoration: none; }
+        .footer a:hover { text-decoration: underline; }
+        .source { margin-bottom: 10px; }
+        @media (max-width: 600px) {
+            .ingredients-list { columns: 1; }
+            .meta { flex-direction: column; gap: 10px; }
+        }
+        @media print { body { padding: 20px; } }
+    </style>
+</head>
+<body>
+    <article class="recipe">
+        <header class="recipe-header">
+            <h1>Salmon &amp; Sushi Rice Bowls</h1>
+            <p class="description">with Avocado &amp; Spicy Mayo</p>
+        </header>
+        
+        <div class="meta"><div class="meta-item"><div class="meta-label">Total Time</div><div class="meta-value">35 mins</div></div>
+<div class="meta-item"><div class="meta-label">Servings</div><div class="meta-value">4 Servings</div></div>
+<div class="meta-item"><div class="meta-label">Category</div><div class="meta-value">import on 2026-11-11 16:01:40</div></div></div>
+        <section class="section"><h2>Ingredients</h2><ul class="ingredients-list"><li>4 Skin-On Salmon Fillets</li>
+<li>1 cup Sushi Rice</li>
+<li>1 Avocado</li>
+<li>18 oz Tail-On Shrimp¹</li>
+<li>1 Tbsp Sugar</li>
+<li>2 Persian Cucumbers</li>
+<li>2 Bell Peppers</li>
+<li>1/4 cup Mayonnaise</li>
+<li>2 Tbsps Mirin²</li>
+<li>2 Tbsps Vegetarian Ponzu Sauce</li>
+<li>1 Tbsp Sambal Oelek</li>
+<li>2 Tbsps Soy Glaze</li>
+<li>1 Tbsp Rice Vinegar</li>
+<li>1 tsp Furikake</li></ul></section>
+        <section class="section"><h2>Instructions</h2><ol class="instructions-list"><li>Cook the rice</li>
+<li>In a medium pot, combine the rice, a big pinch of salt, and 1 ¼ cups of water. Heat to boiling on high.</li>
+<li>Once boiling, reduce the heat to low. Cover and cook, without stirring, 15 to 17 minutes, or until the water has been absorbed and the rice is tender.</li>
+<li>Turn off the heat and fluff with a fork. Stir in the mirin.</li>
+<li>Cook the salmon</li>
+<li>Meanwhile, pat the salmon dry with paper towels; season with salt and pepper on both sides.</li>
+<li>In a large pan (nonstick, if you have one), heat 1 tablespoon of olive oil on medium until hot.</li>
+<li>Add the seasoned salmon, skin side up. Loosely cover the pan with foil. Cook 3 to 5 minutes, or until lightly browned. Flip and cook 2 to 4 minutes, or until browned and cooked through.*</li>
+<li>Transfer to a large bowl.</li>
+<li>CUSTOMIZED STEP 2 If you chose Shrimp</li>
+<li>- Pat the shrimp dry with paper towels; remove the tails. Season with salt and pepper.</li>
+<li>- In a large pan (nonstick, if you have one), heat 1 tablespoon of olive oil on medium-high until hot.</li>
+<li>- Add the seasoned shrimp. Cook, stirring occasionally, 4 to 5 minutes, or until opaque and cooked through.</li>
+<li>- Turn off the heat and stir in the ponzu sauce. Taste, then season with salt and pepper if desired.</li>
+<li>Prepare the remaining ingredients</li>
+<li>Wash and dry the fresh produce.</li>
+<li>Cut off and discard the stems of the peppers. Quarter lengthwise; remove the ribs and seeds, then thinly slice crosswise.</li>
+<li>Medium dice the cucumbers.</li>
+<li>In a large bowl, whisk together the sugar and soy glaze. Add the sliced peppers and diced cucumbers; stir to coat. Set aside to marinate, stirring occasionally, at least 10 minutes. Taste, then season with salt and pepper if desired.</li>
+<li>Halve and pit the avocado. Using a spoon, remove the avocado from the skin, then medium dice; place in a separate bowl. Add the furikake and vinegar; season with salt and pepper. Toss to coat.</li>
+<li>In a separate bowl, whisk together the mayonnaise, 1 tablespoon of water, and as much of the sambal oelek as you&#039;d like, depending on how spicy you&#039;d like the dish to be. Season with salt and pepper.</li>
+<li>Finish the salmon &amp; serve your dish</li>
+<li>When cool enough to handle, remove the skin from the cooked salmon.</li>
+<li>Using two forks, flake the salmon into large pieces. Add the ponzu sauce; stir to coat. Taste, then season with salt and pepper if desired.</li>
+<li>Serve the cooked rice topped with the finished salmon, seasoned avocado, marinated vegetables, and spicy mayo. Enjoy!</li>
+<li>CUSTOMIZED STEP 4 If you chose Shrimp</li>
+<li>- Serve the cooked rice topped with the finished shrimp, seasoned avocado, marinated vegetables, and spicy mayo. Enjoy!</li></ol></section>
+        
+        
+        <footer class="footer">
+            
+            <p>Exported with <a href="https://movemyrecipes.com">MoveMyRecipes.com</a></p>
+        </footer>
+    </article>
+</body>
+</html>

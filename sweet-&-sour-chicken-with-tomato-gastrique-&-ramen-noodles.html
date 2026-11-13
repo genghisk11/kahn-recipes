@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sweet &amp; Sour Chicken with Tomato Gastrique &amp; Ramen Noodles</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: #1f2937;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: #fff;
+        }
+        .recipe-header { margin-bottom: 30px; padding-bottom: 20px; border-bottom: 3px solid #ea580c; }
+        h1 { font-size: 2.5em; color: #111827; margin-bottom: 10px; }
+        .recipe-image { display: block; max-width: 100%; height: auto; border-radius: 8px; margin-bottom: 30px; }
+        .description { font-size: 1.1em; color: #4b5563; font-style: italic; }
+        .meta {
+            display: flex; flex-wrap: wrap; gap: 20px;
+            background: #fff7ed; padding: 15px 20px; border-radius: 8px; margin-bottom: 30px;
+        }
+        .meta-item { text-align: center; }
+        .meta-label { font-size: 0.75em; text-transform: uppercase; letter-spacing: 0.5px; color: #9a3412; }
+        .meta-value { font-weight: bold; color: #c2410c; }
+        h2 { font-size: 1.5em; color: #ea580c; margin-bottom: 15px; padding-bottom: 8px; border-bottom: 1px solid #fed7aa; }
+        .section { margin-bottom: 30px; }
+        .ingredients-list { list-style: none; columns: 2; column-gap: 30px; }
+        .ingredients-list li { padding: 6px 0 6px 20px; position: relative; break-inside: avoid; }
+        .ingredients-list li::before { content: "•"; color: #ea580c; font-weight: bold; position: absolute; left: 0; }
+        .ingredients-list--plain li { padding-left: 0; }
+        .ingredients-list--plain li::before { content: none; }
+        .instructions-list { list-style: none; counter-reset: step; }
+        .instructions-list li { padding: 12px 0 12px 45px; position: relative; border-bottom: 1px dotted #e5e7eb; }
+        .instructions-list li:last-child { border-bottom: none; }
+        .instructions-list li::before {
+            counter-increment: step; content: counter(step);
+            position: absolute; left: 0; top: 10px; width: 28px; height: 28px;
+            background: #ea580c; color: white; border-radius: 50%;
+            text-align: center; font-size: 0.9em; font-weight: bold; line-height: 28px;
+        }
+        .instructions-list--plain li { padding-left: 0; }
+        .instructions-list--plain li::before { counter-increment: none; content: none; }
+        .instructions-list--bulleted li::before {
+            counter-increment: none; content: "•"; background: none;
+            color: #ea580c; width: auto; height: auto; top: 12px; line-height: 1;
+        }
+        .notes { background: #fef3c7; border-left: 4px solid #f59e0b; padding: 15px 20px; }
+        .notes-label { font-weight: bold; color: #92400e; margin-bottom: 5px; }
+        .nutrition { background: #ecfdf5; border-left: 4px solid #10b981; padding: 15px 20px; }
+        .nutrition-label { font-weight: bold; color: #065f46; margin-bottom: 5px; }
+        .footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #e5e7eb; font-size: 0.9em; color: #6b7280; }
+        .footer a { color: #ea580c; text-decoration: none; }
+        .footer a:hover { text-decoration: underline; }
+        .source { margin-bottom: 10px; }
+        @media (max-width: 600px) {
+            .ingredients-list { columns: 1; }
+            .meta { flex-direction: column; gap: 10px; }
+        }
+        @media print { body { padding: 20px; } }
+    </style>
+</head>
+<body>
+    <article class="recipe">
+        <header class="recipe-header">
+            <h1>Sweet &amp; Sour Chicken with Tomato Gastrique &amp; Ramen Noodles</h1>
+            
+        </header>
+        
+        <div class="meta"><div class="meta-item"><div class="meta-label">Total Time</div><div class="meta-value">35 mins</div></div>
+<div class="meta-item"><div class="meta-label">Servings</div><div class="meta-value">2 servings</div></div>
+<div class="meta-item"><div class="meta-label">Category</div><div class="meta-value">import on 2026-11-11 16:01:40</div></div></div>
+        <section class="section"><h2>Ingredients</h2><ul class="ingredients-list"><li>10 oz Chopped Chicken Breast</li>
+<li>1 Yellow Onion</li>
+<li>1 Bird&#039;s Eye Chile Pepper</li>
+<li>2 Tbsps Vegetarian Worcestershire Sauce</li>
+<li>2 Tbsps Rice Vinegar</li>
+<li>1/2 lb Fresh Ramen Noodles</li>
+<li>4 oz Grape Tomatoes</li>
+<li>1/4 cup Cornstarch</li>
+<li>1 Tbsp Soy Sauce</li>
+<li>1 tsp Black &amp; White Sesame Seeds</li>
+<li>1/2 lb Broccoli</li>
+<li>2 cloves Garlic</li>
+<li>1 Tbsp Light Brown Sugar</li>
+<li>1 Tbsp Sesame Oil</li></ul></section>
+        <section class="section"><h2>Instructions</h2><ol class="instructions-list"><li>Prepare the ingredients</li>
+<li>Fill a medium pot 3/4 of the way up with salted water; cover and heat to boiling on high.</li>
+<li>Wash and dry the fresh produce.</li>
+<li>Cut off and discard the bottom 1/2 inch of the broccoli stem; cut the broccoli into small florets.</li>
+<li>Halve the tomatoes.</li>
+<li>Halve and peel the onion; small dice one half (you will have extra).</li>
+<li>Peel and roughly chop 2 cloves of garlic.</li>
+<li>Cut off and discard the stem of the pepper; thinly slice crosswise (for a milder dish, remove and discard the ribs and seeds). Thoroughly wash your hands immediately after handling.</li>
+<li>Cook the noodles &amp; broccoli</li>
+<li>Add the noodles and broccoli florets to the pot of boiling water, stirring gently to separate. Cook, stirring occasionally, 2 to 4 minutes, or until tender. Turn off the heat.</li>
+<li>Drain thoroughly and rinse under warm water 30 seconds to 1 minute to prevent sticking.</li>
+<li>Return to the pot; add the sesame oil and season with salt and pepper. Stir to coat. Cover to keep warm.</li>
+<li>Coat &amp; brown the chicken</li>
+<li>Meanwhile, pat the chicken dry with paper towels; place in a bowl. Season with salt and pepper. Add the cornstarch; toss to coat.</li>
+<li>In a medium pan (nonstick, if you have one), heat a thin layer of oil on medium-high.</li>
+<li>Once the oil is hot enough that a pinch of cornstarch sizzles immediately when added, add the coated chicken in an even layer (discarding any excess cornstarch). Cook, without stirring, 3 to 4 minutes, or until lightly browned. Continue to cook, stirring frequently, 2 to 3 minutes, or until browned on all sides.</li>
+<li>Transfer to a plate.</li>
+<li>Wipe out the pan.</li>
+<li>Make the gastrique</li>
+<li>In the same pan, combine the sugar and 2 tablespoons of water. Stir until the sugar has dissolved. Heat to boiling on medium-high.</li>
+<li>Once boiling, cook, stirring or gently swirling the pan frequently, 1 to 2 to minutes, or until the sugar begins to caramelize.</li>
+<li>Add the vinegar (carefully, as the mixture will bubble up). Cook, stirring frequently, 1 to 2 minutes, or until slightly thickened.</li>
+<li>Add the halved tomatoes, diced onion, chopped garlic, worcestershire sauce, soy sauce, and as much of the sliced pepper as you&#039;d like, depending on how spicy you&#039;d like the dish to be. Cook, stirring occasionally, 2 to 3 minutes, or until combined and the liquid is thickened.</li>
+<li>Finish &amp; serve your dish</li>
+<li>Carefully add the browned chicken to the pan of gastrique. Cook, stirring frequently, 1 to 2 minutes, or until the chicken is glazed and cooked through.</li>
+<li>Serve the finished chicken and gastrique over the dressed noodles and broccoli. Garnish with the sesame seeds. Enjoy!</li></ol></section>
+        
+        
+        <footer class="footer">
+            
+            <p>Exported with <a href="https://movemyrecipes.com">MoveMyRecipes.com</a></p>
+        </footer>
+    </article>
+</body>
+</html>
