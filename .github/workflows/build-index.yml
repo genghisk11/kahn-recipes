@@ -15,7 +15,63 @@ jobs:
         run: |
           python3 - << 'EOF'
           import os, re, json, html
-          from bs4 import BeautifulSoup
+          from html.parser import HTMLParser
+
+          class RecipeParser(HTMLParser):
+              def __init__(self):
+                  super().__init__()
+                  self.tag_stack = []
+                  self.title = ""
+                  self.desc = ""
+                  self.text_lines = []
+                  self.current_text = []
+                  self.section = None
+                  self.ingredients = []
+                  self.instructions = []
+                  self.in_li = False
+                  self.li_text = []
+                  self.found_h1 = False
+
+              def handle_starttag(self, tag, attrs):
+                  self.tag_stack.append(tag)
+                  if tag == 'li':
+                      self.in_li = True
+                      self.li_text = []
+
+              def handle_endtag(self, tag):
+                  text = "".join(self.current_text).strip()
+                  if tag == 'h1' and text and not self.title:
+                      self.title = text
+                      self.found_h1 = True
+                  elif tag == 'p' and self.found_h1 and not self.desc and text:
+                      self.desc = text
+                  elif tag in ('h2', 'h3'):
+                      low = text.lower()
+                      if 'ingredient' in low:
+                          self.section = 'ingredients'
+                      elif 'instruction' in low or 'direction' in low:
+                          self.section = 'instructions'
+                      else:
+                          self.section = None
+                  elif tag == 'li' and self.in_li:
+                      item = " ".join("".join(self.li_text).split())
+                      if item:
+                          if self.section == 'ingredients':
+                              self.ingredients.append(item)
+                          elif self.section == 'instructions':
+                              self.instructions.append({"@type": "HowToStep", "text": item})
+                      self.in_li = False
+
+                  if text:
+                      self.text_lines.append(text)
+                  self.current_text = []
+                  if self.tag_stack and self.tag_stack[-1] == tag:
+                      self.tag_stack.pop()
+
+              def handle_data(self, data):
+                  self.current_text.append(data)
+                  if self.in_li:
+                      self.li_text.append(data)
 
           def parse_mins(text):
               if not text: return None
@@ -31,23 +87,15 @@ jobs:
               with open(fname, 'r', encoding='utf-8') as f:
                   raw = f.read()
 
-              soup = BeautifulSoup(raw, 'html.parser')
-              h1 = soup.find('h1')
-              title = h1.get_text(strip=True) if h1 else (soup.title.string.strip() if soup.title else fname[:-5])
+              parser = RecipeParser()
+              parser.feed(raw)
+              title = parser.title or fname[:-5]
               recipes.append((fname, title))
 
-              # Skip if JSON-LD Recipe schema already exists
               if 'application/ld+json' in raw and '"Recipe"' in raw:
                   continue
 
-              # Extract description (first paragraph after H1)
-              desc = ""
-              if h1:
-                  p = h1.find_next('p')
-                  if p: desc = p.get_text(" ", strip=True)
-
-              # Extract times and yield from page text
-              lines = [l.strip() for l in soup.get_text('\n').split('\n') if l.strip()]
+              lines = [l.strip() for l in parser.text_lines if l.strip()]
               prep_time, total_time, yield_val = None, None, None
               for i, line in enumerate(lines):
                   if line.lower() == 'prep time' and i + 1 < len(lines):
@@ -57,26 +105,13 @@ jobs:
                   elif line.lower() in ('servings', 'yield') and i + 1 < len(lines):
                       yield_val = lines[i+1]
 
-              # Extract Ingredients & Instructions lists
-              ingredients, instructions = [], []
-              for h in soup.find_all(['h2', 'h3']):
-                  htext = h.get_text(strip=True).lower()
-                  if 'ingredient' in htext:
-                      ul = h.find_next(['ul', 'ol'])
-                      if ul:
-                          ingredients = [li.get_text(" ", strip=True) for li in ul.find_all('li')]
-                  elif 'instruction' in htext or 'direction' in htext:
-                      ol = h.find_next(['ol', 'ul'])
-                      if ol:
-                          instructions = [{"@type": "HowToStep", "text": li.get_text(" ", strip=True)} for li in ol.find_all('li')]
-
               schema = {
                   "@context": "https://schema.org",
                   "@type": "Recipe",
                   "name": title,
-                  "description": desc,
-                  "recipeIngredient": ingredients,
-                  "recipeInstructions": instructions
+                  "description": parser.desc,
+                  "recipeIngredient": parser.ingredients,
+                  "recipeInstructions": parser.instructions
               }
               if prep_time: schema["prepTime"] = prep_time
               if total_time: schema["totalTime"] = total_time
@@ -91,7 +126,6 @@ jobs:
               with open(fname, 'w', encoding='utf-8') as f:
                   f.write(raw)
 
-          # Build index.html
           items = "\n".join(f'<li><a href="{html.escape(f)}">{html.escape(t)}</a></li>' for f, t in recipes)
           index_html = f"""<!DOCTYPE html>
           <html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
